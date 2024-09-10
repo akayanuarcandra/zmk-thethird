@@ -30,7 +30,7 @@
         row-gpios = <&gpio1 06 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
 
         col-gpios =
-                    <&gpio1 01 GPIO_ACTIVE_HIGH>,
+                    <&gpio0 24 GPIO_ACTIVE_HIGH>,
                     <&gpio1 02 GPIO_ACTIVE_HIGH>,
                     <&gpio1 07 GPIO_ACTIVE_HIGH>;
 
