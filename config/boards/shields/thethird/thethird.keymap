@@ -38,10 +38,10 @@
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&mt LAYER C>, <&mo LAYERSTWO>;
-        }
+        };
     };
 
-keymap {
+    keymap {
         compatible = "zmk,keymap";
 
         media_layer { //0
