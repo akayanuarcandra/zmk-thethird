@@ -44,7 +44,7 @@
                 bindings = <
                         &to MEDIA       &to BLUETOOTH   &to OSU
                 >;
-        }
+        };
 
         bluetooth_layer { //4
                 bindings = <
