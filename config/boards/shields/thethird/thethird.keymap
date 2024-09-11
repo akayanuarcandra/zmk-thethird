@@ -4,7 +4,11 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/ext_power.h>
 
-#define QWERTY 0
+#define MEDIA 0
+#define LAYERS 1
+#define LAYERSTWO 2
+#define BLUETOOTH 3
+#define OSU 4
 
 / {
     vbatt: vbatt {
@@ -14,12 +18,59 @@
                 zmk,battery = &vbatt;
         };
 
+    behaviors {
+        td0: tap_dance_0 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mt LAYER C_NEXT>, <&mo LAYERSTWO>;
+        };
+
+        td1: tap_dance_1 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mt LAYER &sys_reset>, <&mo LAYERSTWO>;
+        };
+
+        td2: tap_dance_2 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mt LAYER C>, <&mo LAYERSTWO>;
+        }
+    };
+
 keymap {
         compatible = "zmk,keymap";
 
-        qwerty_layer { //0
-            bindings = <
-                &kp Q   &kp W   &kp E
+        media_layer { //0
+                bindings = <
+                        &kp C_PP        &kp C_PREV      &td0
+                >;
+        };
+
+        layers_layer { //1
+                bindings = <
+                        &to MEDIA        &to BLUETOOTH  &none
+                >;
+        };
+
+        layerstwo_layer { //2
+                bindings = <
+                        &to MEDIA       &to OSU         &none
+                >;
+        };
+
+        bluetooth_layer { //3
+                bindings = <
+                        &bt BT_SEL 0    &bt BT_CLR_ALL  &td1
+                >;
+        };
+
+        osu_layer { //4
+                bindings = <
+                        &kp Z           &kp X           &td2
                 >;
         };
     };
