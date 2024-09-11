@@ -23,21 +23,21 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mt LAYER C_NEXT>, <&mo LAYERSTWO>;
+            bindings = <&mt LAYERS C_NEXT>, <&mo LAYERSTWO>;
         };
 
         td1: tap_dance_1 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mt LAYER &sys_reset>, <&mo LAYERSTWO>;
+            bindings = <&mt LAYERS &sys_reset>, <&mo LAYERSTWO>;
         };
 
         td2: tap_dance_2 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mt LAYER C>, <&mo LAYERSTWO>;
+            bindings = <&mt LAYERS C>, <&mo LAYERSTWO>;
         };
     };
 
