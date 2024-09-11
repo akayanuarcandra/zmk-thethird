@@ -19,23 +19,12 @@
                 zmk,battery = &vbatt;
         };
 
-    behaviors {
-        hm_reset: homerow_mods_reset {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&mo>, <&sys_reset>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
         media_layer { //0
                 bindings = <
-                        &kp C_PP        &kp C_PREV      &lt LAYERS C_NEXT
+                        &kp C_PP        &kp C_PREV      &lt MOLAYERS C_NEXT
                 >;
         };
 
@@ -59,13 +48,13 @@
 
         bluetooth_layer { //4
                 bindings = <
-                        &bt BT_SEL 0    &bt BT_CLR_ALL  &hm_reset MOLAYERS
+                        &bt BT_SEL 0    &bt BT_CLR_ALL  &mo MOLAYERS 
                 >;
         };
 
         osu_layer { //5
                 bindings = <
-                        &kp Z           &kp X           &lt LAYERS C
+                        &kp Z           &kp X           &lt MOLAYERS C
                 >;
         };
     };
