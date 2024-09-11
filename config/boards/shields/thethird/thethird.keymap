@@ -5,10 +5,11 @@
 #include <dt-bindings/zmk/ext_power.h>
 
 #define MEDIA 0
-#define LAYERS 1
-#define LAYERSTWO 2
-#define BLUETOOTH 3
-#define OSU 4
+#define MOLAYERS 1
+#define FIRSTLAYER 2
+#define SECONDLAYER 3
+#define BLUETOOTH 4
+#define OSU 5
 
 / {
     vbatt: vbatt {
@@ -19,47 +20,7 @@
         };
 
     behaviors {
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp C_NEXT>, <&mo LAYERSTWO>;
-        };
-
-        td1: tap_dance_1 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&sys_reset>, <&mo LAYERSTWO>;
-        };
-
-        td2: tap_dance_2 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp C>, <&mo LAYERSTWO>;
-        };
-    };
-
-    hm1: homerow_mods1 {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&mo>, <&td0>;
-        };
-
-    hm2: homerow_mods2 {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&mo>, <&td2>;
-        };
-
-    hm_reset: homerow_mods_reset {
+        hm_reset: homerow_mods_reset {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>;
@@ -67,37 +28,44 @@
             flavor = "tap-preferred";
             bindings = <&mo>, <&sys_reset>;
         };
+    };
 
     keymap {
         compatible = "zmk,keymap";
 
         media_layer { //0
                 bindings = <
-                        &kp C_PP        &kp C_PREV      &hm1 LAYERS
+                        &kp C_PP        &kp C_PREV      &lt LAYERS C_NEXT
                 >;
         };
 
-        layers_layer { //1
+        molayers_layer { //1
                 bindings = <
-                        &to MEDIA        &to BLUETOOTH  &none
+                        &to FIRSTLAYER  &to SECONDLAYER &none
                 >;
         };
 
-        layerstwo_layer { //2
+        firstlayer_layer { //2
                 bindings = <
-                        &to MEDIA       &to OSU         &none
+                        &to MEDIA       &to BLUETOOTH   &to OSU
                 >;
         };
 
-        bluetooth_layer { //3
+        secondlayer_layer { //3
                 bindings = <
-                        &bt BT_SEL 0    &bt BT_CLR_ALL  &hm_reset LAYERS
+                        &to MEDIA       &to BLUETOOTH   &to OSU
+                >;
+        }
+
+        bluetooth_layer { //4
+                bindings = <
+                        &bt BT_SEL 0    &bt BT_CLR_ALL  &hm_reset MOLAYERS
                 >;
         };
 
-        osu_layer { //4
+        osu_layer { //5
                 bindings = <
-                        &kp Z           &kp X           &hm2 LAYERS
+                        &kp Z           &kp X           &lt LAYERS C
                 >;
         };
     };
